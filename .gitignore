@@ -1,0 +1,43 @@
+# Python environments
+.venv/
+.venv-ai/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Model weights and checkpoints
+models/
+*.pth
+*.pt
+*.safetensors
+*.onnx
+*.ckpt
+*.bin
+
+# Generated inference outputs
+*_test_output.png
+*_test_output.jpg
+service_test_output.png
+service_test_mask.png
+test_mask.png
+test_out_2.png
+test_output.png
+
+# Logs
+*.log
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
