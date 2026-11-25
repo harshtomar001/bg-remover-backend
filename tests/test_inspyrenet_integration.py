@@ -8,8 +8,8 @@ from app.services.model_registry import create_model_registry
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-INPUT_IMAGE = BASE_DIR / "test_input.png"
-OUTPUT_IMAGE = BASE_DIR / "inspyrenet_adapter_test_output.png"
+INPUT_IMAGE = Path(__file__).resolve().parents[1] / "mock_images" / "test_input.png"
+OUTPUT_IMAGE = Path(__file__).resolve().parents[1] / "mock_images" / "inspyrenet_adapter_test_output.png"
 
 
 def test_inspyrenet_real_inference_through_model_manager():

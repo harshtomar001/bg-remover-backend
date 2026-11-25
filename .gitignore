@@ -25,7 +25,7 @@ models/
 # Generated inference outputs
 *_test_output.png
 *_test_output.jpg
-service_test_output.png
+mock_images/service_test_output.png
 service_test_mask.png
 test_mask.png
 test_out_2.png

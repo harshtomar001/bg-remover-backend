@@ -1,3 +1,4 @@
+from app.services.adapters.birefnet_hr_adapter import BiRefNetHRAdapter
 from app.services.adapters.birefnet_adapter import BiRefNetAdapter
 from app.services.adapters.inspyrenet_adapter import InSPyReNetAdapter
 from app.services.model_manager import ModelManager
@@ -21,6 +22,10 @@ def create_model_registry() -> ModelManager:
     # Register InSPyReNet
     inspyrenet_adapter = InSPyReNetAdapter()
     manager.register_model("inspyrenet", inspyrenet_adapter)
+
+    birefnet_hr_adapter =  BiRefNetHRAdapter()
+    manager.register_model("birefnet_hr" ,  birefnet_hr_adapter)
+
 
     return manager
 

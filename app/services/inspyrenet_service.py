@@ -59,5 +59,5 @@ class InSPyReNetService:
         return mask
 
 
-# Shared service instance
+# Shared storage instance
 inspyrenet_service = InSPyReNetService()

@@ -8,7 +8,7 @@ from app.services.birefnet_service import birefnet_service
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-INPUT_IMAGE = BASE_DIR / "test_input.png"
+INPUT_IMAGE = Path(__file__).resolve().parents[1] / "mock_images" / "test_input.png"
 
 
 @pytest.fixture(scope="module")

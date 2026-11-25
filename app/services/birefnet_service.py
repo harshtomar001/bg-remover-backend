@@ -105,5 +105,5 @@ class BiRefNetService:
         return result
 
 
-# Shared service instance.
+# Shared storage instance.
 birefnet_service = BiRefNetService()

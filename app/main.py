@@ -3,6 +3,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from app.api.routes.remove_background import router as remove_background_router
 from app.services.model_registry import model_manager
+from app.api.routes.auth import router as auth_router
+from app.api.routes.users import router as users_router
+from app.api.routes.images import router as images_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -36,6 +39,7 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["X-Image-ID"],
 )
 
 
@@ -58,3 +62,7 @@ app.include_router(
     prefix="/api/v1",
     tags=["Background Removal"],
 )
+
+app.include_router(auth_router)
+app.include_router(users_router)
+app.include_router(images_router)
