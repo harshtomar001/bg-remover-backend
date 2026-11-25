@@ -3,6 +3,7 @@ from fastapi.testclient import TestClient
 from PIL import Image
 from app.main import app
 from app.services.birefnet_service import birefnet_service
+from app.services.model_registry import model_manager
 
 
 client = TestClient(app)
@@ -71,12 +72,14 @@ def test_file_size_limit():
 
 
 def test_successful_background_removal(monkeypatch):
+
     def mock_remove_background(image):
-        result = image.convert("RGBA")
-        return result
+        return image.convert("RGBA")
+
+    model = model_manager.get_model("birefnet")
 
     monkeypatch.setattr(
-        birefnet_service,
+        model,
         "remove_background",
         mock_remove_background
     )
