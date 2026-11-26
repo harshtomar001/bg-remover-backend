@@ -41,3 +41,5 @@ test_output.png
 # OS
 .DS_Store
 Thumbs.db
+
+storage/users
