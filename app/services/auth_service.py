@@ -74,9 +74,9 @@ def register_user(db: Session, user_data: UserCreate) -> User:
     return new_user
 
 
-def login_user(db: Session, credentials: UserLogin) -> str:
+def authenticate_password_user(db: Session, credentials: UserLogin) -> User:
     """
-    Authenticate a user and return a JWT access token.
+    Authenticate a user and return the corresponding database user.
 
     Raises InvalidCredentialsError for invalid credentials
     or inactive accounts.
@@ -92,6 +92,10 @@ def login_user(db: Session, credentials: UserLogin) -> str:
     if not user:
         raise InvalidCredentialsError("Invalid email or password.")
 
+# Google-only accounts cannot authenticate using passwords.
+    if not user.password_hash:
+        raise InvalidCredentialsError("Invalid email or password.")
+
     if not verify_password(
             credentials.password,
             user.password_hash,
@@ -101,7 +105,10 @@ def login_user(db: Session, credentials: UserLogin) -> str:
     if not user.is_active:
         raise InvalidCredentialsError("Invalid email or password.")
 
-    # JWT subject contains the user's UUID.
-    access_token = create_access_token(str(user.id))
+    return user
 
-    return access_token
+
+def login_user(db: Session, credentials: UserLogin) -> str:
+    """Backward-compatible helper retained for existing service callers."""
+    user = authenticate_password_user(db, credentials)
+    return create_access_token(str(user.id))
